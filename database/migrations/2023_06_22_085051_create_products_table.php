@@ -16,7 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->decimal('price', 8, 2);
+            $table->integer('foc_below_quantity')->default(0);
+            $table->integer('free_per_quantity_order')->default(0)->comment('How much quantity of product will have free product per order.');
+            $table->integer('free_quantity')->default(0)->comment('How many quantity will gift every free_per_quantity_order');
             $table->integer('stock');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
