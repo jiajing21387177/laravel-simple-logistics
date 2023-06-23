@@ -18,7 +18,10 @@ class CreateCustomersTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('phone_number');
+            $table->unsignedBigInteger('user_id')->nullable()->comment('Driver who assigned to deliver.');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
